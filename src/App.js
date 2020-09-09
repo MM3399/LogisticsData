@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Data from './containers/Data.js/Data';
+import * as actions from './store/actions/index';
+import { connect } from 'react-redux';
+import {useEffect} from 'react'
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    //props.getData();
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Data db={props.db}></Data>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  db: state.db
+})
+
+const mapDispatchToProps =  dispatch => (
+  {
+  getData: () => dispatch (actions.getDataFromServer())
+  })
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

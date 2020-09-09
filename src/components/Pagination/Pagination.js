@@ -11,7 +11,7 @@ const Pagination = (props) => {
             <ul className="pagination">
             {pageNumbers.map(number=>{
                return( <li key={number} className="page-item">
-                    <a href="/" onClick={()=>props.paginate(number)} className="page-link">{number}</a>
+                    <a href="#!" onClick={()=>props.paginate(number)} className="page-link">{number}</a>
                 </li>
             )})}
             </ul>
